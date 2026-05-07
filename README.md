@@ -8,8 +8,8 @@ Reference code for the four automatic evaluators reported alongside human rating
 code/
 ├── README.md
 ├── requirements.txt
-├── mllm/            single-call multimodal-LLM judge (no tools, no scaffolding)
-├── agent_audio/     ReAct agent with audio DSP tools
+├── mllm/            MLLM-as-judge baseline
+├── agent_audio/     ReAct agent with audio tools (AV-Phys Agent)
 ├── agent_visual/    ReAct agent with frame inspection tools
 └── agent_av/        ReAct agent with both audio DSP and visual tools
 ```
@@ -32,26 +32,26 @@ Each evaluator uses the [google-genai](https://pypi.org/project/google-genai/) S
 From this directory:
 
 ```bash
-# MLLM baseline
+# MLLM-as-judge baseline
 python -m mllm.evaluate_videos \
     --video-dir videos \
     --rubric-dir rubrics \
     --output-root results/mllm \
     --run-in-parallel --max-workers 8
 
-# audio-tools agent
+# Audio-tools agent (AV-Phys Agent)
 python -m agent_audio.evaluate_videos \
     --video-dir videos --rubric-dir rubrics \
     --output-root results/agent_audio \
     --run-in-parallel --max-workers 8
 
-# visual-tools agent
+# Visual-tools agent
 python -m agent_visual.evaluate_videos \
     --video-dir videos --rubric-dir rubrics \
     --output-root results/agent_visual \
     --run-in-parallel --max-workers 8
 
-# audio + visual tools agent
+# Audio + visual tools agent
 python -m agent_av.evaluate_videos \
     --video-dir videos --rubric-dir rubrics \
     --output-root results/agent_av \
